@@ -1,0 +1,4 @@
+LIBRARY cross_compiler_example1_dll
+
+EXPORTS
+CreateCreator

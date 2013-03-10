@@ -1,0 +1,26 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2012
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "cross_compiler_example1_exe", "cross_compiler_example1_exe\cross_compiler_example1_exe.vcxproj", "{F9BDF304-A0E4-4F05-B788-1CDEDE29B7AD}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "cross_compiler_example1_dll", "cross_compiler_example1_dll\cross_compiler_example1_dll.vcxproj", "{018C822B-909C-453C-9162-412C6813943D}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Win32 = Debug|Win32
+		Release|Win32 = Release|Win32
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{F9BDF304-A0E4-4F05-B788-1CDEDE29B7AD}.Debug|Win32.ActiveCfg = Debug|Win32
+		{F9BDF304-A0E4-4F05-B788-1CDEDE29B7AD}.Debug|Win32.Build.0 = Debug|Win32
+		{F9BDF304-A0E4-4F05-B788-1CDEDE29B7AD}.Release|Win32.ActiveCfg = Release|Win32
+		{F9BDF304-A0E4-4F05-B788-1CDEDE29B7AD}.Release|Win32.Build.0 = Release|Win32
+		{018C822B-909C-453C-9162-412C6813943D}.Debug|Win32.ActiveCfg = Debug|Win32
+		{018C822B-909C-453C-9162-412C6813943D}.Debug|Win32.Build.0 = Debug|Win32
+		{018C822B-909C-453C-9162-412C6813943D}.Release|Win32.ActiveCfg = Release|Win32
+		{018C822B-909C-453C-9162-412C6813943D}.Release|Win32.Build.0 = Release|Win32
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
