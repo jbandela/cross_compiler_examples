@@ -18,11 +18,11 @@ struct AttributeImplementation{
 	}
 
 	template<class Imp>
-	AttributeImplementation(Imp& imp){
+	void set_implementation(Imp* imp){
 
 		// In addition to using a lambda for a cross_function, you can also use a member function
-		imp.addAttribute.template set_mem_fn<AttributeImplementation,&AttributeImplementation::addAttribute>(this);
-		imp.getAttribute. template set_mem_fn<AttributeImplementation,&AttributeImplementation::getAttribute>(this);
+		imp->addAttribute.template set_mem_fn<AttributeImplementation,&AttributeImplementation::addAttribute>(this);
+		imp->getAttribute. template set_mem_fn<AttributeImplementation,&AttributeImplementation::getAttribute>(this);
 
 	}
 };
@@ -38,9 +38,14 @@ struct Point2D:cross_compiler_interface::implement_unknown_interfaces<Point2D,IP
 	AttributeImplementation attribute_imp;
 
 
-	Point2D(std::int32_t x,std::int32_t y):x_(x),y_(y),attribute_imp(*get_implementation<IPoint2D>()){
-		// Define the remaining functions in IPoint2D
+	Point2D(std::int32_t x,std::int32_t y):x_(x),y_(y){
+
 		auto imp = get_implementation<IPoint2D>();
+
+		// Set the attribute implementation
+		attribute_imp.set_implementation(imp);
+
+		// Define the implementation for the rest of the cross_functions
 		imp->getX = [this]{return x_;};
 		imp->getY = [this]{return y_;};
 	}
@@ -60,8 +65,11 @@ struct Point3D:implement_unknown_interfaces<Point3D,IPoint3D>{
 
 	AttributeImplementation attribute_imp;
 
-	Point3D(std::int32_t x,std::int32_t y,std::int32_t z):x_(x),y_(y),z_(z),attribute_imp(*this->get_implementation<IPoint3D>()){
+	Point3D(std::int32_t x,std::int32_t y,std::int32_t z):x_(x),y_(y),z_(z){
 		auto imp = get_implementation<IPoint3D>();
+
+		attribute_imp.set_implementation(imp);
+
 		imp->getX = [this]{return x_;};
 		imp->getY = [this]{return y_;};
 		imp->getZ = [this]{return z_;};
@@ -76,8 +84,11 @@ struct Line:public implement_unknown_interfaces<Line,ILine>{
 
 	AttributeImplementation attribute_imp;
 
-	Line():attribute_imp(*get_implementation<ILine>()){
+	Line(){
 		auto imp = get_implementation<ILine>();
+		
+		attribute_imp.set_implementation(imp);
+
 		imp->addPoint = [this](use_unknown<IPoint> p){
 			points_.push_back(p);
 		};

@@ -13,4 +13,5 @@ int main(){
 	auto point1 = line.getPoint(0);
 	cout << point1.QueryInterface<IPoint2D>().getX() << endl;
 	point1.addAttribute(creator.createStringAttribute("Hello"));
+	cout << point1.getAttribute(0).QueryInterface<IStringAttribute>().getValue() << endl;
 }
